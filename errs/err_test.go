@@ -1,4 +1,4 @@
-package utils
+package errs
 
 import (
 	"errors"
@@ -23,7 +23,7 @@ func TestError(t *testing.T) {
 	})
 
 	t.Run("paths", func(t *testing.T) {
-		thisfile := "/utils/err_test.go:"
+		thisfile := "/utils/errs/err_test.go:"
 		test.True(t, strings.Contains(Wrap(myErr).Error(), thisfile))
 		test.True(t, strings.Contains(Wrapf(myErr, "something failed").Error(), thisfile))
 	})
