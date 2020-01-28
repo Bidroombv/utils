@@ -23,7 +23,7 @@ push: test
 	git push --tags
 
 update:
-	go get -u
+	go get -u ...
 	go mod tidy
 	go mod verify
 
