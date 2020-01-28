@@ -3,28 +3,27 @@ package errs
 import (
 	"errors"
 	"fmt"
-	"strings"
 	"testing"
 
-	"github.com/akfaew/test"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestError(t *testing.T) {
 	myErr := fmt.Errorf("my error")
 
 	t.Run("nil", func(t *testing.T) {
-		test.True(t, Wrap(nil) == nil)
-		test.True(t, Wrapf(nil, "something failed") == nil)
+		assert.NoError(t, Wrap(nil))
+		assert.NoError(t, Wrapf(nil, "something failed"))
 	})
 
 	t.Run("errors.Is()", func(t *testing.T) {
-		test.True(t, errors.Is(Wrap(myErr), myErr))
-		test.True(t, errors.Is(Wrapf(myErr, "something failed"), myErr))
+		assert.True(t, errors.Is(Wrap(myErr), myErr))
+		assert.True(t, errors.Is(Wrapf(myErr, "something failed"), myErr))
 	})
 
 	t.Run("paths", func(t *testing.T) {
 		thisfile := "/utils/errs/err_test.go:"
-		test.True(t, strings.Contains(Wrap(myErr).Error(), thisfile))
-		test.True(t, strings.Contains(Wrapf(myErr, "something failed").Error(), thisfile))
+		assert.Contains(t, Wrap(myErr).Error(), thisfile)
+		assert.Contains(t, Wrapf(myErr, "something failed").Error(), thisfile)
 	})
 }
