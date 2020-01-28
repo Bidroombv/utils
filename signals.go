@@ -6,8 +6,8 @@ import (
 	"syscall"
 )
 
-// InterceptSignals intercepts termination signals
-func InterceptSignals() <-chan bool {
+// InterceptTerminationSignals intercepts termination signals
+func InterceptTerminationSignals() <-chan bool {
 	shutdown := make(chan bool)
 	signals := make(chan os.Signal, 1)
 
