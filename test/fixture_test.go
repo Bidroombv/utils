@@ -10,14 +10,17 @@ import (
 )
 
 func Test_makeFixturePath(t *testing.T) {
-	assert.Equal(t, makeFixturePath(t, ""), "testdata/output/Test_makeFixturePath.fixture")
+	assert.Equal(t, "testdata/output/Test_makeFixturePath.fixture",
+		makeFixturePath(t, ""))
 
 	t.Run("Sub Test", func(t *testing.T) {
-		assert.Equal(t, makeFixturePath(t, ""), "testdata/output/Test_makeFixturePath-Sub_Test.fixture")
+		assert.Equal(t, "testdata/output/Test_makeFixturePath-Sub_Test.fixture",
+			makeFixturePath(t, ""))
 	})
 
 	t.Run("Sub Test With Extra", func(t *testing.T) {
-		assert.Equal(t, makeFixturePath(t, "extra"), "testdata/output/Test_makeFixturePath-Sub_Test_With_Extra-extra.fixture")
+		assert.Equal(t, "testdata/output/Test_makeFixturePath-Sub_Test_With_Extra-extra.fixture",
+			makeFixturePath(t, "extra"))
 	})
 }
 
@@ -59,7 +62,7 @@ func Test_Fixture(t *testing.T) {
 
 func Test_InputFixture(t *testing.T) {
 	input := InputFixture(t, "input.fixture")
-	assert.Equal(t, string(input), "foo")
+	assert.Equal(t, "foo", string(input))
 }
 
 func Test_InputFixtureJson(t *testing.T) {
@@ -77,5 +80,5 @@ func Test_InputFixtureJson(t *testing.T) {
 		C int
 	}{}
 	InputFixtureJson(t, "struct.json", &b)
-	assert.Equal(t, a, b)
+	assert.Equal(t, b, a)
 }
