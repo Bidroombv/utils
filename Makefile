@@ -10,8 +10,8 @@ test: fmt lint
 	go test $(TEST_ARGS) ./...
 
 test-regen: fmt
-	mkdir -p testdata/output
-	go test -regen $(TEST_ARGS) ./...
+	mkdir -p test/testdata/output
+	(cd test/ && go test -regen $(TEST_ARGS) ./...)
 
 test-cover: fmt
 	go test $(TEST_ARGS) -coverprofile=coverage.out ./...
