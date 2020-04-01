@@ -1,1 +1,5 @@
 coverage.out
+.history/
+.DS_Store
+*.code-workspace
+.vscode
