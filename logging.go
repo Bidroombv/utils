@@ -21,7 +21,7 @@ type LoggingFunc func(error, string, ...interface{}) bool
 func LogSetup(serverName string) {
 	srv := "[" + serverName + "] "
 	Log = &Logger{
-		Logger: log.New(os.Stderr, srv, log.LstdFlags|log.Lmicroseconds|log.LUTC|log.Llongfile),
+		Logger: log.New(os.Stderr, srv, log.LstdFlags|log.Lmicroseconds|log.LUTC|log.Lshortfile),
 	}
 }
 
