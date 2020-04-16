@@ -6,16 +6,13 @@ import (
 	"os"
 )
 
+// Logger struct wraps a log.Logger
 type Logger struct {
 	*log.Logger
 }
 
 // Log is the logger
 var Log *Logger
-
-func (l Logger) Verbose() bool {
-	return true // TODO
-}
 
 // LoggingFunc is a type of logging function which returns a true boolean in case of error
 type LoggingFunc func(error, string, ...interface{}) bool
