@@ -25,7 +25,7 @@ func Encrypt(iv []byte, key []byte, plain string) string {
 	}
 
 	plainBytes := []byte(plain)
-	cfb := cipher.NewCFBEncrypter(block, iv)
+	cfb := cipher.NewCTR(block, iv)
 	ciphertext := make([]byte, len(plainBytes))
 	cfb.XORKeyStream(ciphertext, plainBytes)
 
@@ -39,7 +39,7 @@ func Decrypt(iv []byte, key []byte, encrypted string) string {
 	}
 
 	ciphertext := decodeBase64(encrypted)
-	cfb := cipher.NewCFBEncrypter(block, iv)
+	cfb := cipher.NewCTR(block, iv)
 	plaintext := make([]byte, len(ciphertext))
 	cfb.XORKeyStream(plaintext, ciphertext)
 

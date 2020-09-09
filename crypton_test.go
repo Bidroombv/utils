@@ -10,16 +10,72 @@ var key = []byte{122, 37, 67, 42, 70, 45, 74, 97, 78, 100, 82, 103, 85, 107, 88,
 
 func TestDecrypt(t *testing.T) {
 	t.Run("Decrypt", func(t *testing.T) {
-		decrypted := Decrypt(iv, key, "pwinOs/QNg==")
+		tcs := []*struct {
+			encrypted string
+			plain     string
+		}{
+			{
+				"pwinOs/QNg==",
+				"Foo Bar",
+			},
+			{
+				"hwinWujJJcS7nIbEySJq",
+				"foo@example.com",
+			},
+			{
+				"ylPwOryDd4n/xdXKnXU+",
+				"+48 123 456 789",
+			},
+			{
+				"hwinN+/QNg==",
+				"foo-bar",
+			},
+			{
+				"wCfrPqjvYoPj2bzB",
+				"!@#$%^&*()_+",
+			},
+		}
 
-		assert.Equal(t, "Foo Bar", decrypted)
+		var decrypted string
+		for _, tc := range tcs {
+			decrypted = Decrypt(iv, key, tc.encrypted)
+			assert.Equal(t, tc.plain, decrypted)
+		}
 	})
 }
 
 func TestEncrypt(t *testing.T) {
 	t.Run("Encrypt", func(t *testing.T) {
-		encrypted := Encrypt(iv, key, "Foo Bar")
+		tcs := []*struct {
+			plain     string
+			encrypted string
+		}{
+			{
+				"Foo Bar",
+				"pwinOs/QNg==",
+			},
+			{
+				"foo@example.com",
+				"hwinWujJJcS7nIbEySJq",
+			},
+			{
+				"+48 123 456 789",
+				"ylPwOryDd4n/xdXKnXU+",
+			},
+			{
+				"foo-bar",
+				"hwinN+/QNg==",
+			},
+			{
+				"!@#$%^&*()_+",
+				"wCfrPqjvYoPj2bzB",
+			},
+		}
 
-		assert.Equal(t, "pwinOs/QNg==", encrypted)
+		var encrypted string
+		for _, tc := range tcs {
+			encrypted = Encrypt(iv, key, tc.plain)
+			assert.Equal(t, tc.encrypted, encrypted)
+		}
 	})
 }
