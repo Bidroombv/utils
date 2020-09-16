@@ -40,12 +40,12 @@ func TestStringPtr(t *testing.T) {
 	}
 }
 
-func NullPointerIsEmptyString(t *testing.T) {
+func TestNullPointerIsEmptyString(t *testing.T) {
 	var s *string = nil
 	assert.Equal(t, PtrString(s), "")
 }
 
-func StringPointerIsString(t *testing.T) {
+func TestStringPointerIsString(t *testing.T) {
 	foo := "Foo"
 	assert.Equal(t, PtrString(&foo), "Foo")
 }
