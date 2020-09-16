@@ -38,7 +38,7 @@ func TestDecrypt(t *testing.T) {
 
 		var decrypted string
 		for _, tc := range tcs {
-			decrypted = Decrypt(iv, key, tc.encrypted)
+			decrypted, _ = Decrypt(iv, key, tc.encrypted)
 			assert.Equal(t, tc.plain, decrypted)
 		}
 	})
@@ -74,7 +74,7 @@ func TestEncrypt(t *testing.T) {
 
 		var encrypted string
 		for _, tc := range tcs {
-			encrypted = Encrypt(iv, key, tc.plain)
+			encrypted, _ = Encrypt(iv, key, tc.plain)
 			assert.Equal(t, tc.encrypted, encrypted)
 		}
 	})
