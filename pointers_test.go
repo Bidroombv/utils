@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"github.com/stretchr/testify/assert"
 	"reflect"
 	"testing"
 )
@@ -37,4 +38,14 @@ func TestStringPtr(t *testing.T) {
 			}
 		})
 	}
+}
+
+func NullPointerIsEmptyString(t *testing.T) {
+	var s *string = nil
+	assert.Equal(t, PtrString(s), "")
+}
+
+func StringPointerIsString(t *testing.T) {
+	foo := "Foo"
+	assert.Equal(t, PtrString(&foo), "Foo")
 }
