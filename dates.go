@@ -2,6 +2,7 @@ package utils
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -26,6 +27,11 @@ func (d *DateISO) UnmarshalJSON(p []byte) error {
 	d.Time = decoded
 
 	return nil
+}
+
+func (d DateISO) MarshalJSON() ([]byte, error) {
+	date := fmt.Sprintf("\"%s\"", d.String())
+	return []byte(date), nil
 }
 
 func (d *DateISO) String() string {
