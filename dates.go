@@ -37,3 +37,9 @@ func (d DateISO) MarshalJSON() ([]byte, error) {
 func (d *DateISO) String() string {
 	return d.Format(DateISOFormat)
 }
+
+// CurrentUTCTimeAsISOString returns current time as ISO-8601 string with timezone converted to UTC
+// Example: 2021-01-25T14:32:25Z
+func CurrentUTCTimeAsISOString() string {
+	return time.Now().UTC().Format(time.RFC3339)
+}
