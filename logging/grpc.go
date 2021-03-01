@@ -2,13 +2,14 @@ package logger
 
 import (
 	"context"
+	"path"
+	"time"
+
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/peer"
 	"google.golang.org/grpc/status"
-	"path"
-	"time"
 )
 
 const logMessage = "gRPC"
